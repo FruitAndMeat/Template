@@ -11,7 +11,8 @@ namespace CommunicationLib
         public string Name { get; set; }
         public DataType DataType { get; set; }
         public string Address { get; set; }
-        public string value { get; set; }
+        public string Value { get; set; }
+        public DateTime TimeStmap { get; set; }
     }
 
     public enum DataType

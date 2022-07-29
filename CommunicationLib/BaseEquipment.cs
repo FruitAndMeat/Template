@@ -8,6 +8,9 @@ namespace CommunicationLib
 {
     public abstract class BaseEquipment
     {
+        public bool IsConnected { get; set; }
 
+
+        public abstract void Send();
     }
 }
