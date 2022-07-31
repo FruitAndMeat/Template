@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace CommunicationLib
 {
+    /// <summary>
+    /// 泛型类
+    /// </summary>
+    /// <typeparam name="T">泛型，值的类型，根据DataType有不同的类型</typeparam>
     public class Variable
     {
         /// <summary>变量名称</summary>
@@ -14,12 +18,16 @@ namespace CommunicationLib
         public DataType DataType { get; set; }
         /// <summary>地址</summary>
         public string Address { get; set; }
-        /// <summary>值</summary>
-        public string Value { get; set; }
-        /// <summary>时间戳</summary>
-        public DateTime TimeStmap { get; set; }
-    }
+        /// <summary>当前值</summary>
+        public string CurrentValue { get; set; }
+        /// <summary>缓存值</summary>
+        public string CacheValue { get; private set; }
 
+
+        // <summary>时间戳</summary>
+        //public DateTime TimeStmap { get; set; }
+    }
+    
     /// <summary>
     /// 对应PLC的数据类型。
     /// </summary>

@@ -12,7 +12,9 @@ namespace CommunicationLib
     {
         #region Field&Property
         public bool IsConnected => _PLC?.IsConnected ?? false;
-        public List<Variable> Variables { get; set; } = new List<Variable>();
+        //public List<Variable> Variables { get; set; } = new List<Variable>();
+
+        public Dictionary<string, Variable> Variables = new Dictionary<string, Variable>();
         private List<bool> bools = new List<bool>();
 
         private Plc _PLC;
@@ -74,10 +76,7 @@ namespace CommunicationLib
         #region InitialVariableList
        public void InitialList()
         {
-            foreach (Variable item in Variables)
-            {
-
-            }
+            
         }
 
         #endregion
