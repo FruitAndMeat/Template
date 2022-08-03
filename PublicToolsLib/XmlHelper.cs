@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace PublicToolsLib
+namespace Utils
 {
     /// <summary>
     /// XmlHelper 的摘要说明。
@@ -64,8 +64,7 @@ namespace PublicToolsLib
         }
 
         /// <summary>
-
-        ///  * 使用示列:
+        ///  使用示列:
         ///  示例： XmlHelper.Delete( "/Node", "")
         ///  XmlHelper.Delete( "/Node", "Attribute")
         /// </summary>

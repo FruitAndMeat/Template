@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PublicToolsLib
+namespace Utils
 {
     public class FileHelper : IDisposable
     {
@@ -304,10 +304,10 @@ namespace PublicToolsLib
         }
         #endregion
 
-        #region 将指定文件夹下面的所有内容copy到目标文件夹下面 果目标文件夹为只读属性就会报错。
+        #region 将指定文件夹下面的所有内容copy到目标文件夹下面 如果目标文件夹为只读属性就会报错。
         /****************************************
           * 函数名称：CopyDir
-          * 功能说明：将指定文件夹下面的所有内容copy到目标文件夹下面 果目标文件夹为只读属性就会报错。
+          * 功能说明：将指定文件夹下面的所有内容copy到目标文件夹下面 如果目标文件夹为只读属性就会报错。
           * 参     数：srcPath:原始路径,aimPath:目标文件夹
           * 调用示列：
           *            string srcPath = Server.MapPath("test/");  

@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 
-namespace PublicToolsLib
+namespace Utils
 {
     /// <summary>
     /// <para>　</para>
