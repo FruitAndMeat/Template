@@ -1,6 +1,9 @@
 ﻿using log4net;
+using log4net.Appender;
+using log4net.Config;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,18 +11,13 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
+    /// <summary>
+    /// Log4net日志类
+    /// </summary>
     public class LogHelper
     {
-       private static ILog log = log4net.LogManager.GetLogger("Test");
-        public static void LogError(string errormsg)
-        {
-            log.Error(errormsg, new Exception("发生了一个错误"));
-        }
-
-        public static void LogFatal(string Fatalmsg)
-        {
-            log.Error(Fatalmsg, new Exception("发生了一个严重错误"));
-        }
-
+        
+       
     }
 }
+

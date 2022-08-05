@@ -21,7 +21,7 @@ namespace Utils
         }
         ~FileHelper()
         {
-            Dispose();
+            Dispose(false);
         }
 
         protected virtual void Dispose(bool isDisposing)
@@ -89,7 +89,7 @@ namespace Utils
             System.IO.StreamWriter f2 = new System.IO.StreamWriter(Path, false, System.Text.Encoding.GetEncoding("gb2312"));
             f2.Write(Strings);
             f2.Close();
-            f2.Dispose();
+            //f2.Dispose();
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Utils
             System.IO.StreamWriter f2 = new System.IO.StreamWriter(Path, false, encode);
             f2.Write(Strings);
             f2.Close();
-            f2.Dispose();
+            //f2.Dispose();
         }
         #endregion
 
@@ -136,7 +136,7 @@ namespace Utils
                 StreamReader f2 = new StreamReader(Path, System.Text.Encoding.GetEncoding("gb2312"));
                 s = f2.ReadToEnd();
                 f2.Close();
-                f2.Dispose();
+                //f2.Dispose();
             }
 
             return s;
@@ -158,7 +158,7 @@ namespace Utils
                 StreamReader f2 = new StreamReader(Path, encode);
                 s = f2.ReadToEnd();
                 f2.Close();
-                f2.Dispose();
+                //f2.Dispose();
             }
 
             return s;

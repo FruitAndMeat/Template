@@ -26,9 +26,9 @@ namespace Utils
             {
                 objXmlDoc.Load(XmlFile);
             }
-            catch (System.Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             strXmlFile = XmlFile;
         }
@@ -147,9 +147,9 @@ namespace Utils
             {
                 objXmlDoc.Save(strXmlFile);
             }
-            catch (System.Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             objXmlDoc = null;
         }
