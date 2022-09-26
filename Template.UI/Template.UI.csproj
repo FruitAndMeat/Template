@@ -75,7 +75,7 @@
       <Project>{5c6539b1-f993-4649-9ae9-c5ce191cb060}</Project>
       <Name>CommunicationLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\Template.DAL.csproj">
+    <ProjectReference Include="..\Template.DAL\Template.DAL.csproj">
       <Project>{a3dd9bbb-e480-42db-9850-76f927b8f4fe}</Project>
       <Name>Template.DAL</Name>
     </ProjectReference>
