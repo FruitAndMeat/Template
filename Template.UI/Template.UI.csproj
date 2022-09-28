@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,11 +50,71 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoad.Designer.cs">
+      <DependentUpon>frmLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\frmRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\frmRecord.Designer.cs">
+      <DependentUpon>frmRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\frmAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\frmAlarm.Designer.cs">
+      <DependentUpon>frmAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\frmActual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\frmActual.Designer.cs">
+      <DependentUpon>frmActual.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\frmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\frmMessage.Designer.cs">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,25 +123,88 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UC_Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Home.Designer.cs">
+      <DependentUpon>UC_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_Inbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Inbox.Designer.cs">
+      <DependentUpon>UC_Inbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_Sent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Sent.Designer.cs">
+      <DependentUpon>UC_Sent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UC_Settings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UC_Settings.Designer.cs">
+      <DependentUpon>UC_Settings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoad.resx">
+      <DependentUpon>frmLoad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\frmRecord.resx">
+      <DependentUpon>frmRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\frmActual.resx">
+      <DependentUpon>frmActual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\frmAlarm.resx">
+      <DependentUpon>frmAlarm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\frmMessage.resx">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Home.resx">
+      <DependentUpon>UC_Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Inbox.resx">
+      <DependentUpon>UC_Inbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Sent.resx">
+      <DependentUpon>UC_Sent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UC_Settings.resx">
+      <DependentUpon>UC_Settings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommunicationLib\CommunicationLib.csproj">
       <Project>{5c6539b1-f993-4649-9ae9-c5ce191cb060}</Project>
       <Name>CommunicationLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Template.DAL\Template.DAL.csproj">
-      <Project>{a3dd9bbb-e480-42db-9850-76f927b8f4fe}</Project>
-      <Name>Template.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Template.BLL\Template.BLL.csproj">
       <Project>{0b78b419-fb53-4892-8e74-d822f51d1770}</Project>
@@ -87,6 +214,35 @@
       <Project>{e0e2cddc-1093-4fcf-adb6-191d2e9942b3}</Project>
       <Name>Template.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{6bebf7c4-7cc3-429c-a1d3-d2197a726320}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\caidanicon.png" />
+    <Content Include="Images\fanhui.png" />
+    <Content Include="Images\gengduo.png" />
+    <Content Include="Images\jiahao-fang.png" />
+    <Content Include="Images\jiahao-yuan.png" />
+    <Content Include="Images\jiahao.png" />
+    <Content Include="Images\jianhao-fang.png" />
+    <Content Include="Images\jianhao.png" />
+    <Content Include="Images\jiantou.png" />
+    <Content Include="Images\Key.png" />
+    <Content Include="Images\shaixuan.png" />
+    <Content Include="Images\shezhi.png" />
+    <Content Include="Images\shijian.png" />
+    <Content Include="Images\shouyeicon.png" />
+    <Content Include="Images\woderenwu.png" />
+    <Content Include="Images\Xhao-yuan.png" />
+    <Content Include="Images\Xhao.png" />
+    <Content Include="Images\xiala.png" />
+    <Content Include="Images\xiangmasaomiao.png" />
+    <Content Include="Images\zhengque-gou.png" />
+    <Content Include="Images\关于.png" />
+    <Content Include="Images\列表.png" />
+    <Content Include="Images\菜单.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
