@@ -49,6 +49,7 @@ namespace Template.UI
             forms.Add(new frmMessage());
             forms.Add(new frmAlarm());
             forms.Add(new frmSettings());
+            OpenForm("frmActual");
         }
 
         #region 私有方法
@@ -66,10 +67,11 @@ namespace Template.UI
             }
         }
 
-        void CloseForm(Form form) {
-
-        }
-
+        
+        /// <summary>
+        /// 打开窗体
+        /// </summary>
+        /// <param name="formName">窗体的Name属性值</param>
         void OpenForm(string formName) {
             bool b = false;
             foreach (Form item in panelMain.Controls) {

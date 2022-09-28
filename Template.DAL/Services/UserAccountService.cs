@@ -12,7 +12,7 @@ namespace Template.DAL
     public class UserAccountService
     {
         /// <summary>
-        /// 检查是否有该用户名
+        /// 根据用户名检查是否有该用户。
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
