@@ -42,6 +42,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserManage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Template.DAL\Template.DAL.csproj">
+      <Project>{a3dd9bbb-e480-42db-9850-76f927b8f4fe}</Project>
+      <Name>Template.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template.Models\Template.Models.csproj">
+      <Project>{e0e2cddc-1093-4fcf-adb6-191d2e9942b3}</Project>
+      <Name>Template.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{6bebf7c4-7cc3-429c-a1d3-d2197a726320}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
