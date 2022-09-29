@@ -28,22 +28,27 @@ namespace Template.UI
         }
 
         private void btn_AutoRun_Click(object sender, EventArgs e) {
-            AddLog(0, "板卡未检测到，请检查！");
+            AppendLog(0, "板卡未检测到，请检查!");
         }
 
 
         #region 更新日志通用方法
-
-        private void AddLog(int index, string log) {
+        /// <summary>
+        /// 更新listview日志的通用方法
+        /// </summary>
+        /// <param name="imageindex">ico索引</param>
+        /// <param name="log">日志信息</param>
+        /// <param name="index">插入集合位置的索引，默认为0，即最上方</param>
+        private void AppendLog(int imageindex, string log,int index=0) {
             if (this.lstInfo.InvokeRequired) {
                 Invoke(new Action(() => {
-                    ListViewItem lst = new ListViewItem("   " + CurrentTime, index);
+                    ListViewItem lst = new ListViewItem("   " + CurrentTime, imageindex);
                     lst.SubItems.Add(log);
                     lstInfo.Items.Insert(index, lst);
                 }));
             }
             else {
-                ListViewItem lst = new ListViewItem("   " + CurrentTime, index);
+                ListViewItem lst = new ListViewItem("   " + CurrentTime, imageindex);
                 lst.SubItems.Add(log);
                 lstInfo.Items.Insert(index, lst);
             }

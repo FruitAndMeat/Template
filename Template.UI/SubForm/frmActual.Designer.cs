@@ -26,23 +26,13 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "1",
-            "一",
-            "二"}, 1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "2",
-            "实时"}, 2);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
-            "3",
-            "阿斯顿撒 "}, 1);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
-            "4",
-            "去问问"}, 2);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
-            "5",
-            "大师"}, 0);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActual));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.num_Dist = new System.Windows.Forms.NumericUpDown();
             this.num_STac = new System.Windows.Forms.NumericUpDown();
@@ -73,6 +63,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lstInfo = new System.Windows.Forms.ListView();
+            this.InfoTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Info = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txt_LotNum = new System.Windows.Forms.TextBox();
@@ -112,9 +105,6 @@
             this.XAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ZAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.InfoTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Info = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_Dist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_STac)).BeginInit();
@@ -483,15 +473,10 @@
             this.InfoTime,
             this.Info});
             this.lstInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstInfo.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lstInfo.FullRowSelect = true;
             this.lstInfo.GridLines = true;
             this.lstInfo.HideSelection = false;
-            this.lstInfo.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5});
             this.lstInfo.Location = new System.Drawing.Point(5, 27);
             this.lstInfo.Margin = new System.Windows.Forms.Padding(5);
             this.lstInfo.Name = "lstInfo";
@@ -500,6 +485,24 @@
             this.lstInfo.TabIndex = 0;
             this.lstInfo.UseCompatibleStateImageBehavior = false;
             this.lstInfo.View = System.Windows.Forms.View.Details;
+            // 
+            // InfoTime
+            // 
+            this.InfoTime.Text = "日志时间";
+            this.InfoTime.Width = 200;
+            // 
+            // Info
+            // 
+            this.Info.Text = "日志信息";
+            this.Info.Width = 429;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "info.ico");
+            this.imageList1.Images.SetKeyName(1, "warning.ico");
+            this.imageList1.Images.SetKeyName(2, "error.ico");
             // 
             // groupBox3
             // 
@@ -777,6 +780,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -787,7 +798,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(28, 100);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(560, 266);
             this.dataGridView1.TabIndex = 14;
@@ -921,14 +933,22 @@
             // 
             // ID
             // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ID.DataPropertyName = "ID";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.FillWeight = 152.2843F;
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Width = 60;
             // 
             // PointName
             // 
             this.PointName.DataPropertyName = "PointName";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.PointName.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PointName.FillWeight = 86.92893F;
             this.PointName.HeaderText = "名称";
             this.PointName.Name = "PointName";
             this.PointName.ReadOnly = true;
@@ -936,6 +956,9 @@
             // XAxisValue
             // 
             this.XAxisValue.DataPropertyName = "XAxisPostion";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.XAxisValue.DefaultCellStyle = dataGridViewCellStyle4;
+            this.XAxisValue.FillWeight = 86.92893F;
             this.XAxisValue.HeaderText = "X轴坐标";
             this.XAxisValue.Name = "XAxisValue";
             this.XAxisValue.ReadOnly = true;
@@ -943,6 +966,9 @@
             // YAxisValue
             // 
             this.YAxisValue.DataPropertyName = "YAxisPostion";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.YAxisValue.DefaultCellStyle = dataGridViewCellStyle5;
+            this.YAxisValue.FillWeight = 86.92893F;
             this.YAxisValue.HeaderText = "Y轴坐标";
             this.YAxisValue.Name = "YAxisValue";
             this.YAxisValue.ReadOnly = true;
@@ -950,27 +976,12 @@
             // ZAxisValue
             // 
             this.ZAxisValue.DataPropertyName = "ZAxisPostion";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ZAxisValue.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ZAxisValue.FillWeight = 86.92893F;
             this.ZAxisValue.HeaderText = "Z轴坐标";
             this.ZAxisValue.Name = "ZAxisValue";
             this.ZAxisValue.ReadOnly = true;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "info.ico");
-            this.imageList1.Images.SetKeyName(1, "warning.ico");
-            this.imageList1.Images.SetKeyName(2, "error.ico");
-            // 
-            // InfoTime
-            // 
-            this.InfoTime.Text = "日志时间";
-            this.InfoTime.Width = 200;
-            // 
-            // Info
-            // 
-            this.Info.Text = "日志信息";
-            this.Info.Width = 429;
             // 
             // frmActual
             // 
@@ -1066,13 +1077,13 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ColumnHeader InfoTime;
+        private System.Windows.Forms.ColumnHeader Info;
+        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PointName;
         private System.Windows.Forms.DataGridViewTextBoxColumn XAxisValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn YAxisValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZAxisValue;
-        private System.Windows.Forms.ColumnHeader InfoTime;
-        private System.Windows.Forms.ColumnHeader Info;
-        private System.Windows.Forms.ImageList imageList1;
     }
 }
