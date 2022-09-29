@@ -16,10 +16,11 @@ namespace Template.DAL
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task<bool> CheckUserNameAsync(UserAccount user) {
+        public bool CheckUserName(UserAccount user) {
             try {
-                return await SqlSugarHelper.sqliteDb.Queryable<UserAccount>()
-                  .AnyAsync(t => t.Name == user.Name);
+                bool result= SqlSugarHelper.sqliteDb.Queryable<UserAccount>()
+                  .Any(t => t.Name == user.Name);
+                return result;
             }
             catch (Exception ex) {
                 LogHelper.LogError(ex);
@@ -31,10 +32,10 @@ namespace Template.DAL
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public async Task<UserAccount> GetUserAsync(UserAccount user) {
+        public UserAccount GetUser(UserAccount user) {
             try {
-                return await SqlSugarHelper.sqliteDb.Queryable<UserAccount>()
-                  .FirstAsync(t => t.Name == user.Name && t.Password==user.Password);
+                return SqlSugarHelper.sqliteDb.Queryable<UserAccount>()
+                  .First(t => t.Name == user.Name && t.Password==user.Password);
             }
             catch (Exception ex) {
 

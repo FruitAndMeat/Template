@@ -33,9 +33,10 @@ namespace Template.UI
                 #endregion
 
             this.btnClose.Click += (o, e) => { this.Close(); };
-            this.btnMaximum.Click +=(o, e) => { FormMaximized(); };
+            //this.btnMaximum.Click +=(o, e) => { FormMaximized(); };
             this.btnMinimum.Click += (o, e) => { this.WindowState = FormWindowState.Minimized; };
-            this.panelTitle.MouseDoubleClick += (o, e) => { FormMaximized(); };
+            //this.panelTitle.MouseDoubleClick += (o, e) => { FormMaximized(); };
+            this.btnMaximum.Enabled = false;
 
             this.Load += FrmMain_Load;
             #endregion

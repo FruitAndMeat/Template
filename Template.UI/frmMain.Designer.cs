@@ -30,18 +30,18 @@
             this.panelTitle = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnMinimum = new System.Windows.Forms.Button();
             this.btnMaximum = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnActual = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.btnReport = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnRecord = new System.Windows.Forms.Button();
-            this.btnMessage = new System.Windows.Forms.Button();
-            this.panelMain = new System.Windows.Forms.Panel();
             this.btnAlarm = new System.Windows.Forms.Button();
+            this.btnMessage = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.panelTitle.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +96,37 @@
             this.btnHome.TabIndex = 3;
             this.btnHome.UseVisualStyleBackColor = false;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "caidanicon.png");
+            this.imageList1.Images.SetKeyName(1, "fanhui.png");
+            this.imageList1.Images.SetKeyName(2, "gengduo.png");
+            this.imageList1.Images.SetKeyName(3, "jiahao.png");
+            this.imageList1.Images.SetKeyName(4, "jiahao-fang.png");
+            this.imageList1.Images.SetKeyName(5, "jiahao-yuan.png");
+            this.imageList1.Images.SetKeyName(6, "jianhao.png");
+            this.imageList1.Images.SetKeyName(7, "jianhao-fang.png");
+            this.imageList1.Images.SetKeyName(8, "jiantou.png");
+            this.imageList1.Images.SetKeyName(9, "Key.png");
+            this.imageList1.Images.SetKeyName(10, "shaixuan.png");
+            this.imageList1.Images.SetKeyName(11, "shezhi.png");
+            this.imageList1.Images.SetKeyName(12, "shijian.png");
+            this.imageList1.Images.SetKeyName(13, "shouyeicon.png");
+            this.imageList1.Images.SetKeyName(14, "woderenwu.png");
+            this.imageList1.Images.SetKeyName(15, "Xhao.png");
+            this.imageList1.Images.SetKeyName(16, "Xhao-yuan.png");
+            this.imageList1.Images.SetKeyName(17, "xiala.png");
+            this.imageList1.Images.SetKeyName(18, "xiangmasaomiao.png");
+            this.imageList1.Images.SetKeyName(19, "zhengque-gou.png");
+            this.imageList1.Images.SetKeyName(20, "菜单.png");
+            this.imageList1.Images.SetKeyName(21, "记录.png");
+            this.imageList1.Images.SetKeyName(22, "实时.png");
+            this.imageList1.Images.SetKeyName(23, "信息.png");
+            this.imageList1.Images.SetKeyName(24, "报表.png");
+            this.imageList1.Images.SetKeyName(25, "报警.png");
+            // 
             // btnMinimum
             // 
             this.btnMinimum.BackColor = System.Drawing.Color.Transparent;
@@ -148,37 +179,6 @@
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "✖";
             this.btnClose.UseVisualStyleBackColor = false;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "caidanicon.png");
-            this.imageList1.Images.SetKeyName(1, "fanhui.png");
-            this.imageList1.Images.SetKeyName(2, "gengduo.png");
-            this.imageList1.Images.SetKeyName(3, "jiahao.png");
-            this.imageList1.Images.SetKeyName(4, "jiahao-fang.png");
-            this.imageList1.Images.SetKeyName(5, "jiahao-yuan.png");
-            this.imageList1.Images.SetKeyName(6, "jianhao.png");
-            this.imageList1.Images.SetKeyName(7, "jianhao-fang.png");
-            this.imageList1.Images.SetKeyName(8, "jiantou.png");
-            this.imageList1.Images.SetKeyName(9, "Key.png");
-            this.imageList1.Images.SetKeyName(10, "shaixuan.png");
-            this.imageList1.Images.SetKeyName(11, "shezhi.png");
-            this.imageList1.Images.SetKeyName(12, "shijian.png");
-            this.imageList1.Images.SetKeyName(13, "shouyeicon.png");
-            this.imageList1.Images.SetKeyName(14, "woderenwu.png");
-            this.imageList1.Images.SetKeyName(15, "Xhao.png");
-            this.imageList1.Images.SetKeyName(16, "Xhao-yuan.png");
-            this.imageList1.Images.SetKeyName(17, "xiala.png");
-            this.imageList1.Images.SetKeyName(18, "xiangmasaomiao.png");
-            this.imageList1.Images.SetKeyName(19, "zhengque-gou.png");
-            this.imageList1.Images.SetKeyName(20, "菜单.png");
-            this.imageList1.Images.SetKeyName(21, "记录.png");
-            this.imageList1.Images.SetKeyName(22, "实时.png");
-            this.imageList1.Images.SetKeyName(23, "信息.png");
-            this.imageList1.Images.SetKeyName(24, "报表.png");
-            this.imageList1.Images.SetKeyName(25, "报警.png");
             // 
             // btnActual
             // 
@@ -244,30 +244,6 @@
             this.btnReport.UseVisualStyleBackColor = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.MistyRose;
-            this.btnSettings.FlatAppearance.BorderSize = 3;
-            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(173)))), ((int)(((byte)(181)))));
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.ImageKey = "shezhi.png";
-            this.btnSettings.ImageList = this.imageList1;
-            this.btnSettings.Location = new System.Drawing.Point(576, 6);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.btnSettings.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnSettings.Size = new System.Drawing.Size(108, 48);
-            this.btnSettings.TabIndex = 0;
-            this.btnSettings.Text = "设置";
-            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            // 
             // btnRecord
             // 
             this.btnRecord.BackColor = System.Drawing.Color.Transparent;
@@ -291,6 +267,30 @@
             this.btnRecord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRecord.UseVisualStyleBackColor = false;
             this.btnRecord.Click += new System.EventHandler(this.btnRecord_Click);
+            // 
+            // btnAlarm
+            // 
+            this.btnAlarm.BackColor = System.Drawing.Color.Transparent;
+            this.btnAlarm.FlatAppearance.BorderColor = System.Drawing.Color.MistyRose;
+            this.btnAlarm.FlatAppearance.BorderSize = 3;
+            this.btnAlarm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(173)))), ((int)(((byte)(181)))));
+            this.btnAlarm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnAlarm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlarm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAlarm.ForeColor = System.Drawing.Color.White;
+            this.btnAlarm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAlarm.ImageKey = "报警.png";
+            this.btnAlarm.ImageList = this.imageList1;
+            this.btnAlarm.Location = new System.Drawing.Point(348, 6);
+            this.btnAlarm.Name = "btnAlarm";
+            this.btnAlarm.Padding = new System.Windows.Forms.Padding(3);
+            this.btnAlarm.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnAlarm.Size = new System.Drawing.Size(108, 48);
+            this.btnAlarm.TabIndex = 0;
+            this.btnAlarm.Text = "报警";
+            this.btnAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAlarm.UseVisualStyleBackColor = false;
+            this.btnAlarm.Click += new System.EventHandler(this.btnAlarm_Click);
             // 
             // btnMessage
             // 
@@ -316,6 +316,30 @@
             this.btnMessage.UseVisualStyleBackColor = false;
             this.btnMessage.Click += new System.EventHandler(this.btnMessage_Click);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettings.FlatAppearance.BorderColor = System.Drawing.Color.MistyRose;
+            this.btnSettings.FlatAppearance.BorderSize = 3;
+            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(173)))), ((int)(((byte)(181)))));
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSettings.ForeColor = System.Drawing.Color.White;
+            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSettings.ImageKey = "shezhi.png";
+            this.btnSettings.ImageList = this.imageList1;
+            this.btnSettings.Location = new System.Drawing.Point(576, 6);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Padding = new System.Windows.Forms.Padding(3);
+            this.btnSettings.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnSettings.Size = new System.Drawing.Size(108, 48);
+            this.btnSettings.TabIndex = 0;
+            this.btnSettings.Text = "设置";
+            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // panelMain
             // 
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -323,30 +347,6 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1280, 653);
             this.panelMain.TabIndex = 3;
-            // 
-            // btnAlarm
-            // 
-            this.btnAlarm.BackColor = System.Drawing.Color.Transparent;
-            this.btnAlarm.FlatAppearance.BorderColor = System.Drawing.Color.MistyRose;
-            this.btnAlarm.FlatAppearance.BorderSize = 3;
-            this.btnAlarm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(173)))), ((int)(((byte)(181)))));
-            this.btnAlarm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnAlarm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlarm.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAlarm.ForeColor = System.Drawing.Color.White;
-            this.btnAlarm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAlarm.ImageKey = "报警.png";
-            this.btnAlarm.ImageList = this.imageList1;
-            this.btnAlarm.Location = new System.Drawing.Point(348, 6);
-            this.btnAlarm.Name = "btnAlarm";
-            this.btnAlarm.Padding = new System.Windows.Forms.Padding(3);
-            this.btnAlarm.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAlarm.Size = new System.Drawing.Size(108, 48);
-            this.btnAlarm.TabIndex = 0;
-            this.btnAlarm.Text = "报警";
-            this.btnAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAlarm.UseVisualStyleBackColor = false;
-            this.btnAlarm.Click += new System.EventHandler(this.btnAlarm_Click);
             // 
             // frmMain
             // 
