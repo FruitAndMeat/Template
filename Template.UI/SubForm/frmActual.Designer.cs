@@ -40,11 +40,8 @@
             this.num_MaxVel = new System.Windows.Forms.NumericUpDown();
             this.num_MinVel = new System.Windows.Forms.NumericUpDown();
             this.btn_ZZero = new System.Windows.Forms.Button();
-            this.btn_ZAxisClear = new System.Windows.Forms.Button();
             this.btn_YZero = new System.Windows.Forms.Button();
-            this.btn_YAxisClear = new System.Windows.Forms.Button();
             this.btn_XZero = new System.Windows.Forms.Button();
-            this.btn_XAxisClear = new System.Windows.Forms.Button();
             this.btn_Down = new System.Windows.Forms.Button();
             this.btn_Back = new System.Windows.Forms.Button();
             this.btn_Right = new System.Windows.Forms.Button();
@@ -87,7 +84,12 @@
             this.btn_Home = new System.Windows.Forms.Button();
             this.btn_Auto = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPoint = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PointName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.XAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.YAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label20 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -100,11 +102,6 @@
             this.lbl_YAxisSpeed = new System.Windows.Forms.Label();
             this.lbl_XAxisSpeed = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PointName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.XAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.YAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ZAxisValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_Dist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_STac)).BeginInit();
@@ -114,7 +111,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPoint)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -125,11 +122,8 @@
             this.groupBox1.Controls.Add(this.num_MaxVel);
             this.groupBox1.Controls.Add(this.num_MinVel);
             this.groupBox1.Controls.Add(this.btn_ZZero);
-            this.groupBox1.Controls.Add(this.btn_ZAxisClear);
             this.groupBox1.Controls.Add(this.btn_YZero);
-            this.groupBox1.Controls.Add(this.btn_YAxisClear);
             this.groupBox1.Controls.Add(this.btn_XZero);
-            this.groupBox1.Controls.Add(this.btn_XAxisClear);
             this.groupBox1.Controls.Add(this.btn_Down);
             this.groupBox1.Controls.Add(this.btn_Back);
             this.groupBox1.Controls.Add(this.btn_Right);
@@ -247,61 +241,34 @@
             // 
             // btn_ZZero
             // 
-            this.btn_ZZero.Location = new System.Drawing.Point(149, 137);
+            this.btn_ZZero.Location = new System.Drawing.Point(182, 137);
             this.btn_ZZero.Name = "btn_ZZero";
             this.btn_ZZero.Size = new System.Drawing.Size(85, 33);
             this.btn_ZZero.TabIndex = 23;
             this.btn_ZZero.Text = "原点";
             this.btn_ZZero.UseVisualStyleBackColor = true;
             // 
-            // btn_ZAxisClear
-            // 
-            this.btn_ZAxisClear.Location = new System.Drawing.Point(331, 139);
-            this.btn_ZAxisClear.Name = "btn_ZAxisClear";
-            this.btn_ZAxisClear.Size = new System.Drawing.Size(85, 33);
-            this.btn_ZAxisClear.TabIndex = 22;
-            this.btn_ZAxisClear.Text = "脉冲清零";
-            this.btn_ZAxisClear.UseVisualStyleBackColor = true;
-            // 
             // btn_YZero
             // 
-            this.btn_YZero.Location = new System.Drawing.Point(149, 83);
+            this.btn_YZero.Location = new System.Drawing.Point(182, 83);
             this.btn_YZero.Name = "btn_YZero";
             this.btn_YZero.Size = new System.Drawing.Size(85, 33);
             this.btn_YZero.TabIndex = 21;
             this.btn_YZero.Text = "原点";
             this.btn_YZero.UseVisualStyleBackColor = true;
             // 
-            // btn_YAxisClear
-            // 
-            this.btn_YAxisClear.Location = new System.Drawing.Point(331, 85);
-            this.btn_YAxisClear.Name = "btn_YAxisClear";
-            this.btn_YAxisClear.Size = new System.Drawing.Size(85, 33);
-            this.btn_YAxisClear.TabIndex = 20;
-            this.btn_YAxisClear.Text = "脉冲清零";
-            this.btn_YAxisClear.UseVisualStyleBackColor = true;
-            // 
             // btn_XZero
             // 
-            this.btn_XZero.Location = new System.Drawing.Point(149, 29);
+            this.btn_XZero.Location = new System.Drawing.Point(182, 29);
             this.btn_XZero.Name = "btn_XZero";
             this.btn_XZero.Size = new System.Drawing.Size(85, 33);
             this.btn_XZero.TabIndex = 19;
             this.btn_XZero.Text = "原点";
             this.btn_XZero.UseVisualStyleBackColor = true;
             // 
-            // btn_XAxisClear
-            // 
-            this.btn_XAxisClear.Location = new System.Drawing.Point(331, 31);
-            this.btn_XAxisClear.Name = "btn_XAxisClear";
-            this.btn_XAxisClear.Size = new System.Drawing.Size(85, 33);
-            this.btn_XAxisClear.TabIndex = 18;
-            this.btn_XAxisClear.Text = "脉冲清零";
-            this.btn_XAxisClear.UseVisualStyleBackColor = true;
-            // 
             // btn_Down
             // 
-            this.btn_Down.Location = new System.Drawing.Point(240, 139);
+            this.btn_Down.Location = new System.Drawing.Point(306, 139);
             this.btn_Down.Name = "btn_Down";
             this.btn_Down.Size = new System.Drawing.Size(85, 33);
             this.btn_Down.TabIndex = 17;
@@ -310,7 +277,7 @@
             // 
             // btn_Back
             // 
-            this.btn_Back.Location = new System.Drawing.Point(240, 85);
+            this.btn_Back.Location = new System.Drawing.Point(306, 85);
             this.btn_Back.Name = "btn_Back";
             this.btn_Back.Size = new System.Drawing.Size(85, 33);
             this.btn_Back.TabIndex = 24;
@@ -319,7 +286,7 @@
             // 
             // btn_Right
             // 
-            this.btn_Right.Location = new System.Drawing.Point(240, 31);
+            this.btn_Right.Location = new System.Drawing.Point(306, 31);
             this.btn_Right.Name = "btn_Right";
             this.btn_Right.Size = new System.Drawing.Size(85, 33);
             this.btn_Right.TabIndex = 16;
@@ -657,7 +624,7 @@
             // btn_Reset
             // 
             this.btn_Reset.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_Reset.Location = new System.Drawing.Point(244, 91);
+            this.btn_Reset.Location = new System.Drawing.Point(308, 91);
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(10);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(92, 38);
@@ -668,7 +635,7 @@
             // btn_Pause
             // 
             this.btn_Pause.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_Pause.Location = new System.Drawing.Point(362, 91);
+            this.btn_Pause.Location = new System.Drawing.Point(490, 91);
             this.btn_Pause.Margin = new System.Windows.Forms.Padding(10);
             this.btn_Pause.Name = "btn_Pause";
             this.btn_Pause.Size = new System.Drawing.Size(92, 38);
@@ -713,7 +680,7 @@
             // 
             this.btn_AutoRun.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btn_AutoRun.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_AutoRun.Location = new System.Drawing.Point(244, 33);
+            this.btn_AutoRun.Location = new System.Drawing.Point(308, 33);
             this.btn_AutoRun.Margin = new System.Windows.Forms.Padding(10);
             this.btn_AutoRun.Name = "btn_AutoRun";
             this.btn_AutoRun.Size = new System.Drawing.Size(92, 38);
@@ -725,7 +692,7 @@
             // btn_Home
             // 
             this.btn_Home.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_Home.Location = new System.Drawing.Point(362, 33);
+            this.btn_Home.Location = new System.Drawing.Point(490, 33);
             this.btn_Home.Margin = new System.Windows.Forms.Padding(10);
             this.btn_Home.Name = "btn_Home";
             this.btn_Home.Size = new System.Drawing.Size(92, 38);
@@ -750,7 +717,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.dataGridView1);
+            this.groupBox4.Controls.Add(this.dgvPoint);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.label19);
@@ -770,16 +737,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "系统总览";
             // 
-            // dataGridView1
+            // dgvPoint
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvPoint.AllowUserToAddRows = false;
+            this.dgvPoint.AllowUserToDeleteRows = false;
+            this.dgvPoint.AllowUserToResizeColumns = false;
+            this.dgvPoint.AllowUserToResizeRows = false;
+            this.dgvPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPoint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -787,23 +754,75 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPoint.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPoint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPoint.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.PointName,
             this.XAxisValue,
             this.YAxisValue,
             this.ZAxisValue});
-            this.dataGridView1.Location = new System.Drawing.Point(28, 100);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(560, 266);
-            this.dataGridView1.TabIndex = 14;
-            this.dataGridView1.TabStop = false;
+            this.dgvPoint.Location = new System.Drawing.Point(28, 100);
+            this.dgvPoint.Name = "dgvPoint";
+            this.dgvPoint.ReadOnly = true;
+            this.dgvPoint.RowHeadersVisible = false;
+            this.dgvPoint.RowTemplate.Height = 30;
+            this.dgvPoint.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPoint.Size = new System.Drawing.Size(560, 266);
+            this.dgvPoint.TabIndex = 14;
+            this.dgvPoint.TabStop = false;
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ID.DataPropertyName = "ID";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.FillWeight = 152.2843F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 60;
+            // 
+            // PointName
+            // 
+            this.PointName.DataPropertyName = "PointName";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.PointName.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PointName.FillWeight = 86.92893F;
+            this.PointName.HeaderText = "名称";
+            this.PointName.Name = "PointName";
+            this.PointName.ReadOnly = true;
+            // 
+            // XAxisValue
+            // 
+            this.XAxisValue.DataPropertyName = "XAxisPostion";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.XAxisValue.DefaultCellStyle = dataGridViewCellStyle4;
+            this.XAxisValue.FillWeight = 86.92893F;
+            this.XAxisValue.HeaderText = "X轴坐标";
+            this.XAxisValue.Name = "XAxisValue";
+            this.XAxisValue.ReadOnly = true;
+            // 
+            // YAxisValue
+            // 
+            this.YAxisValue.DataPropertyName = "YAxisPostion";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.YAxisValue.DefaultCellStyle = dataGridViewCellStyle5;
+            this.YAxisValue.FillWeight = 86.92893F;
+            this.YAxisValue.HeaderText = "Y轴坐标";
+            this.YAxisValue.Name = "YAxisValue";
+            this.YAxisValue.ReadOnly = true;
+            // 
+            // ZAxisValue
+            // 
+            this.ZAxisValue.DataPropertyName = "ZAxisPostion";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ZAxisValue.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ZAxisValue.FillWeight = 86.92893F;
+            this.ZAxisValue.HeaderText = "Z轴坐标";
+            this.ZAxisValue.Name = "ZAxisValue";
+            this.ZAxisValue.ReadOnly = true;
             // 
             // label20
             // 
@@ -931,58 +950,6 @@
             this.label11.TabIndex = 13;
             this.label11.Text = "X轴速度：";
             // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID.DataPropertyName = "ID";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.FillWeight = 152.2843F;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 60;
-            // 
-            // PointName
-            // 
-            this.PointName.DataPropertyName = "PointName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.PointName.DefaultCellStyle = dataGridViewCellStyle3;
-            this.PointName.FillWeight = 86.92893F;
-            this.PointName.HeaderText = "名称";
-            this.PointName.Name = "PointName";
-            this.PointName.ReadOnly = true;
-            // 
-            // XAxisValue
-            // 
-            this.XAxisValue.DataPropertyName = "XAxisPostion";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.XAxisValue.DefaultCellStyle = dataGridViewCellStyle4;
-            this.XAxisValue.FillWeight = 86.92893F;
-            this.XAxisValue.HeaderText = "X轴坐标";
-            this.XAxisValue.Name = "XAxisValue";
-            this.XAxisValue.ReadOnly = true;
-            // 
-            // YAxisValue
-            // 
-            this.YAxisValue.DataPropertyName = "YAxisPostion";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.YAxisValue.DefaultCellStyle = dataGridViewCellStyle5;
-            this.YAxisValue.FillWeight = 86.92893F;
-            this.YAxisValue.HeaderText = "Y轴坐标";
-            this.YAxisValue.Name = "YAxisValue";
-            this.YAxisValue.ReadOnly = true;
-            // 
-            // ZAxisValue
-            // 
-            this.ZAxisValue.DataPropertyName = "ZAxisPostion";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ZAxisValue.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ZAxisValue.FillWeight = 86.92893F;
-            this.ZAxisValue.HeaderText = "Z轴坐标";
-            this.ZAxisValue.Name = "ZAxisValue";
-            this.ZAxisValue.ReadOnly = true;
-            // 
             // frmActual
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1006,7 +973,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPoint)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1020,11 +987,8 @@
         private System.Windows.Forms.NumericUpDown num_MaxVel;
         private System.Windows.Forms.NumericUpDown num_MinVel;
         private System.Windows.Forms.Button btn_ZZero;
-        private System.Windows.Forms.Button btn_ZAxisClear;
         private System.Windows.Forms.Button btn_YZero;
-        private System.Windows.Forms.Button btn_YAxisClear;
         private System.Windows.Forms.Button btn_XZero;
-        private System.Windows.Forms.Button btn_XAxisClear;
         private System.Windows.Forms.Button btn_Down;
         private System.Windows.Forms.Button btn_Back;
         private System.Windows.Forms.Button btn_Right;
@@ -1076,7 +1040,7 @@
         private System.Windows.Forms.Label lbl_XAxisSpeed;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPoint;
         private System.Windows.Forms.ColumnHeader InfoTime;
         private System.Windows.Forms.ColumnHeader Info;
         private System.Windows.Forms.ImageList imageList1;

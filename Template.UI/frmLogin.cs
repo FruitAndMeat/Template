@@ -72,6 +72,8 @@ namespace Template.UI
                 objUser = userService.GetUser(objUser);
                 if (objUser != null) {
                     LogHelper.LogInfo($"用户[{objUser.Name}]登录系统");
+                    //用户信息保存到公共参数。
+                    Common.Argument.User = objUser;
                     DialogResult = DialogResult.OK;
                 }
                 else {

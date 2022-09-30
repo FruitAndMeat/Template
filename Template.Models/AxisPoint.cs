@@ -19,7 +19,7 @@ namespace Template.Models
         public string PointName { get; set; }
         /// <summary>点位X轴坐标值</summary>
         [SqlSugar.SugarColumn(IsNullable = false)]
-        public double XAxinPostion { get; set; }
+        public double XAxisPostion { get; set; }
         /// <summary>点位Y轴坐标值</summary>
         [SqlSugar.SugarColumn(IsNullable = false)]
         public double YAxisPostion { get; set; }

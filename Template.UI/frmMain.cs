@@ -127,7 +127,13 @@ namespace Template.UI
         }
 
         private void btnSettings_Click(object sender, EventArgs e) {
-            OpenForm("frmSettings");
+            if (Common.Argument.User.Rank<3) {
+                MessageBox.Show("你的权限不足，无法打开此页面","温馨提示",MessageBoxButtons.RetryCancel,MessageBoxIcon.Hand);
+            }
+            else {
+                OpenForm("frmSettings");
+            }
+            
         }
     }
 }
