@@ -14,7 +14,7 @@ namespace CommunicationLib
         public bool IsConnected => _PLC?.IsConnected ?? false;
         //public List<Variable> Variables { get; set; } = new List<Variable>();
 
-        public Dictionary<string, Variable> Variables = new Dictionary<string, Variable>();
+        
         private List<bool> bools = new List<bool>();
 
         private Plc _PLC;

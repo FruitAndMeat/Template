@@ -35,7 +35,7 @@ namespace Template.UI
         private void FrmLogin_Load(object sender, EventArgs e) {
             //添加账户
             this.cmbAccount.Items.AddRange( Enum.GetNames(typeof(Rank)));
-            this.cmbAccount.SelectedIndex = 0;
+            this.cmbAccount.SelectedIndex = 3;
         }
 
         private  void BtnCancel_Click(object sender, EventArgs e) {
@@ -93,11 +93,15 @@ namespace Template.UI
                     }));
                 }
             }
-            if (this.btnLogin.InvokeRequired) {
-                this.btnLogin.Invoke(new Action(() => {
-                    this.btnLogin.Enabled = true;
-                }));
+            try {
+                if (this.btnLogin.InvokeRequired) {
+                    this.btnLogin.Invoke(new Action(() => {
+                        this.btnLogin.Enabled = true;
+                    }));
+                }
             }
+            catch {}
+            
             
         }
     }

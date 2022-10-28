@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using Template.DAL;
 
 namespace ConsoleTest
 {
@@ -10,15 +14,39 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            //Utils.LogHelper Log = new Utils.LogHelper(@"C:\Users\Nah\Desktop",null);
-            //Log.Debug("系统启动");
-            //Log.Info("执行了第一个操作");
-            //Log.Info("执行了第二个操作");
-            //Log.Error("发生了错误", new Exception("发生了错误，请检查"));
-            //Log.Info("系统恢复了正常");
-            //Log.Info("执行了第三个操作");
-            //Log.Fatal("系统发生了严重错误");
-            //Log.Info("系统关闭");
+            C1 c1 = new C1();
+            Program p=new Program();
+            Action action = new Action(p.Method1);
+            action += p.Method2;
+            action += p.Method3;
+            action += p.Method4;
+
+            var a = action.GetInvocationList();
+            a[1].DynamicInvoke();
+            Console.ReadLine();
+        }
+
+        public void Method1() {
+            Console.WriteLine("这是第一个方法");
+        }
+        public void Method2() {
+            Console.WriteLine("这是第二个方法");
+        }
+        public void Method3() {
+            Console.WriteLine("这是第三个方法");
+        }
+        public void Method4() {
+            Console.WriteLine("这是第四个方法");
         }
     }
+    public class C1
+    {
+        public C1() {
+            IPAddress address = new IPAddress(new byte[] { 127, 0, 0, 1 });
+            var b=address.ToString();
+            TcpClient client = new TcpClient(b,502);
+        }
+        
+    }
+
 }

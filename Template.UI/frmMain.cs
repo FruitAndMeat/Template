@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Template.UI.Common;
 
 namespace Template.UI
 {
@@ -34,7 +35,9 @@ namespace Template.UI
 
             this.btnClose.Click += (o, e) => { this.Close(); };
             //this.btnMaximum.Click +=(o, e) => { FormMaximized(); };
-            this.btnMinimum.Click += (o, e) => { this.WindowState = FormWindowState.Minimized; };
+            this.btnMinimum.Click += (o, e) => {
+              this.WindowState = FormWindowState.Minimized;
+            };
             //this.panelTitle.MouseDoubleClick += (o, e) => { FormMaximized(); };
             this.btnMaximum.Enabled = false;
 
@@ -43,14 +46,10 @@ namespace Template.UI
         }
 
         private void FrmMain_Load(object sender, EventArgs e) {
-            forms = new List<Form>();
-            forms.Add(new frmActual());
-            forms.Add(new frmReport());
-            forms.Add(new frmRecord());
-            forms.Add(new frmMessage());
-            forms.Add(new frmAlarm());
-            forms.Add(new frmSettings());
-            OpenForm("frmActual");
+            //初始化窗体并打开默认窗体。
+            InitialForm();
+            //初始化连接的设备。
+            InitialPLC();
         }
 
         #region 私有方法
@@ -68,7 +67,18 @@ namespace Template.UI
             }
         }
 
-        
+        /// <summary>
+        /// 任务栏图标最小化软件
+        /// </summary>
+        protected override CreateParams CreateParams {
+            get {
+                const int WS_MINIMIZEBOX = 0x00020000; // Winuser.h中定义
+                CreateParams cp = base.CreateParams;
+                cp.Style = cp.Style | WS_MINIMIZEBOX; // 允许最小化操作
+                return cp;
+            }
+        }
+
         /// <summary>
         /// 打开窗体
         /// </summary>
@@ -90,6 +100,27 @@ namespace Template.UI
                 panelMain.Controls.Add(form);
                 form.Show();
             }
+        }
+
+        /// <summary>
+        /// 初始化窗体并打开默认窗体
+        /// </summary>
+        void InitialForm() {
+            forms = new List<Form>();
+            forms.Add(new frmActual());
+            forms.Add(new frmReport());
+            forms.Add(new frmRecord());
+            forms.Add(new frmMessage());
+            forms.Add(new frmAlarm());
+            forms.Add(new frmSettings());
+            OpenForm("frmActual");
+        }
+        /// <summary>
+        /// 初始化连接的设备
+        /// </summary>
+        void InitialPLC() {
+            Argument.MotionPLC = new DAL.MotionService("192.168.0.52", 502);
+            Argument.MotionPLC.Run();
         }
 
         #endregion

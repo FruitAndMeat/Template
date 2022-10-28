@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Configuration;
-using System.Web;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
 
 namespace Utils
 {
