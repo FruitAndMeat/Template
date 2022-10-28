@@ -11,6 +11,17 @@ namespace Template.UI
 
         /// <summary>运行步骤</summary>
         private enum RunStep {
+            RunReady,
+            /// <summary>前往取料位</summary>
+            MoveToReclaimer,
+            /// <summary>取料位判断料是否存在</summary>
+            ReclaimerWait,
+            /// <summary>取料位Z轴下降</summary>
+            ReclaimerDown,
+            /// <summary>取料位抓料</summary>
+            ReclaimerGrap,
+            /// <summary>取料位Z轴上升</summary>
+            ReclaimerUp,
 
         }
 
