@@ -40,8 +40,5 @@ namespace Template.Models
 
     }
 
-    public class Var<T> {
-        public int address { get; set; }
-        public T Value { get; set; }
-    }
+   
 }

@@ -80,6 +80,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="RunStep.cs" />
     <Compile Include="SubForm\frmAddPoint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +282,9 @@
     <Content Include="Images\关于.png" />
     <Content Include="Images\列表.png" />
     <Content Include="Images\菜单.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

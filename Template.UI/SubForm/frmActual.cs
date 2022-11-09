@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Template.UI.Common;
+using Template.UI;
 
 namespace Template.UI
 {
@@ -9,21 +11,7 @@ namespace Template.UI
     {
         private System.Windows.Forms.Timer timer;
 
-        /// <summary>运行步骤</summary>
-        private enum RunStep {
-            RunReady,
-            /// <summary>前往取料位</summary>
-            MoveToReclaimer,
-            /// <summary>取料位判断料是否存在</summary>
-            ReclaimerWait,
-            /// <summary>取料位Z轴下降</summary>
-            ReclaimerDown,
-            /// <summary>取料位抓料</summary>
-            ReclaimerGrap,
-            /// <summary>取料位Z轴上升</summary>
-            ReclaimerUp,
-
-        }
+        private bool IsEmeStop;
 
         /// <summary>
         /// 当前系统时间
@@ -110,6 +98,167 @@ namespace Template.UI
                 }
             }
         }
+
+
+        #region 自动运行步骤
+        private void AutoProcess() {
+            while (!IsEmeStop) {
+                switch (Argument.CurrentRunStep) {
+                    case RunStep.RunReady:
+                        AppendLog(0, "机构已准备妥运行!");
+                        Thread.Sleep(2000);
+                        
+                        AppendLog(0, "移动到取料位！");
+                        break;
+                    case RunStep.MoveToReclaimer:
+                        //直接定位
+                        
+                        Argument.MotionPLC.PosAbsloute(Argument.Points[1]);
+                        Thread.Sleep(1000);
+                        //如果都为Done，再监测是否为当前位置.
+                        while (!Argument.MotionPLC.AllPosDone) {
+                            if (IsEmeStop) {
+                                break;
+                            }
+                            Thread.Sleep(100);
+                        }
+                        break;
+                    case RunStep.ReclaimerWait:
+                        //Thread.Sleep(2000);
+                        AppendLog(0, "移动到取料位完成！");
+                        
+                        break;
+                    case RunStep.ReclaimerDown:
+                        AppendLog(0, "开始取料！");
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ReclaimerGrap:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ReclaimerUp:
+                        
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.MoveToScaner:
+                        AppendLog(0, "取料完成，前往扫码位！");
+                        Argument.MotionPLC.PosAbsloute(Argument.Points[2]);
+                        Thread.Sleep(1000);
+                        //如果都为Done，再监测是否为当前位置.
+                        while (!Argument.MotionPLC.AllPosDone) {
+                            if (IsEmeStop) {
+                                break;
+                            }
+                            Thread.Sleep(100);
+                        }
+                        break;
+                    case RunStep.TriggerScan:
+                        AppendLog(0, "移动到扫码位完成，准备扫码！");
+                        AppendLog(0, "扫码完成，移动到加工位！");
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.MoveToProcess:
+                        
+                        Argument.MotionPLC.PosAbsloute(Argument.Points[3]);
+                        Thread.Sleep(1000);
+                        //如果都为Done，再监测是否为当前位置.
+                       
+                        break;
+                    case RunStep.ProcessCheck:
+                        AppendLog(0, "移动到加工位完成，等待加工！");
+                        //Thread.Sleep(2000);
+
+                        break;
+                    case RunStep.ProcessDown1:
+                        
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ProcessPutDown:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ProcessUp1:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ProcessWait:
+                        
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ProcessDown2:
+                        
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ProcessGrab:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.ProcessUp2:
+                        //Thread.Sleep(2000);
+                        
+                        AppendLog(0, "加工完成，准备清洗！");
+                        break;
+                    case RunStep.MoveToClean:
+                        
+                        Argument.MotionPLC.PosAbsloute(Argument.Points[4]);
+                        Thread.Sleep(1000);
+                        //如果都为Done，再监测是否为当前位置.
+                        while (!Argument.MotionPLC.AllPosDone) {
+                            if (IsEmeStop) {
+                                break;
+                            }
+                            Thread.Sleep(100);
+                        }
+                        break;
+                    case RunStep.WaitClean:
+
+                        //Thread.Sleep(5000);
+                        AppendLog(0, "等待清洗作业技术！");
+                        AppendLog(0, "清洗作业结束，准备出料！");
+                        break;
+                    case RunStep.MoveToOutlet:
+                        
+                        Argument.MotionPLC.PosAbsloute(Argument.Points[5]);
+                        Thread.Sleep(1000);
+                        //如果都为Done，再监测是否为当前位置.
+                        while (!Argument.MotionPLC.AllPosDone) {
+                            if (IsEmeStop) {
+                                break;
+                            }
+                            Thread.Sleep(100);
+                        }
+                        break;
+                    case RunStep.OutletWait:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.OutletDown:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.OutletPutDown:
+                        //Thread.Sleep(2000);
+                        
+                        break;
+                    case RunStep.OutletUp:
+                        AppendLog(0,"出料运行完成！");
+                        Argument.CurrentRunStep=RunStep.RunReady;
+                        break;
+                    default:
+                        break;
+                }
+                Argument.CurrentRunStep++;
+                
+            }
+            
+        } 
+        #endregion
 #if false
 
         /// <summary>
@@ -251,6 +400,10 @@ namespace Template.UI
         //根据点位数据自动运行
         private void btn_AutoRun_Click(object sender, EventArgs e) {
             //状态机模式
+            Thread autoThread=new Thread(AutoProcess);
+            autoThread.IsBackground = true;
+            autoThread.Start();
+            AppendLog(0, "开始自动运行!");
         }
         //手自动切换
         private void btn_Auto_Click(object sender, EventArgs e) {
@@ -271,8 +424,18 @@ namespace Template.UI
         }
         //系统回零 包括回原点，数据清零
         private void btn_Home_Click(object sender, EventArgs e) {
-
+            AppendLog(0, "开始复位！");
+            IsEmeStop = false;
         }
         #endregion
+
+        private void btn_EmeStop_Click(object sender, EventArgs e) {
+            AppendLog(0, "触发了急停！");
+            IsEmeStop = true;
+        }
+
+        private void btn_Pause_Click(object sender, EventArgs e) {
+
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Template.Models
     /// <summary>
     /// 运行点位
     /// </summary>
-    public class AxisPoint
+    public class AxisPoint:IEquatable<AxisPoint>
     {
         
         private int _ID;
@@ -61,7 +61,13 @@ namespace Template.Models
             set { _ZAxisPostion = value; }
         }
 
-
-        //加减速时间，运动速度
+        public bool Equals(AxisPoint other) {
+            if (other==null) {
+                return false;
+            }
+            return XAxisPostion==other.XAxisPostion 
+                && YAxisPostion==other.YAxisPostion 
+                && ZAxisPostion==other.ZAxisPostion;
+        }
     }
 }

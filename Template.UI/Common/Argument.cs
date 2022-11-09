@@ -9,7 +9,7 @@ using Template.DAL;
 using Template.Models;
 using Utils;
 
-namespace Template.UI.Common
+namespace Template.UI
 {
     public class Argument
     {
@@ -39,6 +39,8 @@ namespace Template.UI.Common
                 }));
             }
         }
+
+        internal    static RunStep CurrentRunStep { get; set; }
 
     }
 }

@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Template.UI.Common;
+using Template.UI;
 
 namespace Template.UI
 {
@@ -158,7 +158,7 @@ namespace Template.UI
         }
 
         private void btnSettings_Click(object sender, EventArgs e) {
-            if (Common.Argument.User.Rank<3) {
+            if (Argument.User.Rank<3) {
                 MessageBox.Show("你的权限不足，无法打开此页面","温馨提示",MessageBoxButtons.RetryCancel,MessageBoxIcon.Hand);
             }
             else {

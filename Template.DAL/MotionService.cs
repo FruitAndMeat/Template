@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Net;
-using System.Security.Permissions;
-using System.Security.Policy;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using EasyModbus;
-using SqlSugar.Extensions;
 using Template.Models;
 using Utils;
 
@@ -40,7 +32,17 @@ namespace Template.DAL
         /// <summary>点动速度</summary>
         public double JogSpeed { get; set; }
 
+        public bool AllPosDone { get { return XAxis.Done && YAxis.Done && ZAxis.Done; } }
 
+        public AxisPoint CurrentPostion {
+            get {
+                return new AxisPoint() {
+                    XAxisPostion = XAxis.CurrentPostion,
+                    YAxisPostion = YAxis.CurrentPostion,
+                    ZAxisPostion = ZAxis.CurrentPostion
+                };
+            }
+        }
 
         /// <summary>线圈写入暂存队列</summary>
         public ConcurrentQueue<WriteBool> WriteBoolData{get;set;}
@@ -56,7 +58,7 @@ namespace Template.DAL
 
         private ModbusClient client;
 
-
+        private object _async=new object();
         public MotionService(string iP, int port) {
             IP = iP;
             Port = port;
@@ -133,7 +135,9 @@ namespace Template.DAL
         /// </summary>
         private void ReadAnalyArea1() {
             try {
-                area1_bool = client.ReadDiscreteInputs(0, 18);
+                lock (_async) {
+                    area1_bool = client.ReadDiscreteInputs(0, 18);
+                }
                 XAxis.Enable = area1_bool[0];
                 XAxis.Error = area1_bool[1];
                 XAxis.Homed = area1_bool[2];
@@ -164,29 +168,33 @@ namespace Template.DAL
 
         private void ReadAnalyArea3() {
             try {
-                List<int> templist = client.ReadInputRegisters(0, 30).ToList<int>();
+                lock (_async) {
+                    List<int> templist = client.ReadInputRegisters(0, 30).ToList<int>();
 
-                XAxis.CurrentSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(0).Take<int>(4).ToArray<int>(),
-                    ModbusClient.RegisterOrder.HighLow);
-                XAxis.CurrentPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(4).Take<int>(4).ToArray<int>(),
-                    ModbusClient.RegisterOrder.HighLow);
 
-                YAxis.CurrentSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(8).Take<int>(4).ToArray<int>(),
-                     ModbusClient.RegisterOrder.HighLow);
-                YAxis.CurrentPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(12).Take<int>(4).ToArray<int>(),
-                    ModbusClient.RegisterOrder.HighLow);
 
-                ZAxis.CurrentSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(16).Take<int>(4).ToArray<int>(),
-                   ModbusClient.RegisterOrder.HighLow);
-                ZAxis.CurrentPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(20).Take<int>(4).ToArray<int>(),
-                    ModbusClient.RegisterOrder.HighLow);
+                    XAxis.CurrentSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(0).Take<int>(4).ToArray<int>(),
+                        ModbusClient.RegisterOrder.HighLow);
+                    XAxis.CurrentPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(4).Take<int>(4).ToArray<int>(),
+                        ModbusClient.RegisterOrder.HighLow);
 
-                XAxis.ErrorId = Convert.ToUInt32(ModbusClient.ConvertRegistersToInt(templist.Skip(24).Take(2).ToArray(),
-                    ModbusClient.RegisterOrder.HighLow));
-                YAxis.ErrorId = Convert.ToUInt32(ModbusClient.ConvertRegistersToInt(templist.Skip(26).Take(2).ToArray(),
-                    ModbusClient.RegisterOrder.HighLow));
-                ZAxis.ErrorId = Convert.ToUInt32(ModbusClient.ConvertRegistersToInt(templist.Skip(28).Take(2).ToArray(),
-                    ModbusClient.RegisterOrder.HighLow));
+                    YAxis.CurrentSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(8).Take<int>(4).ToArray<int>(),
+                         ModbusClient.RegisterOrder.HighLow);
+                    YAxis.CurrentPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(12).Take<int>(4).ToArray<int>(),
+                        ModbusClient.RegisterOrder.HighLow);
+
+                    ZAxis.CurrentSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(16).Take<int>(4).ToArray<int>(),
+                       ModbusClient.RegisterOrder.HighLow);
+                    ZAxis.CurrentPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(20).Take<int>(4).ToArray<int>(),
+                        ModbusClient.RegisterOrder.HighLow);
+
+                    XAxis.ErrorId = Convert.ToUInt32(ModbusClient.ConvertRegistersToInt(templist.Skip(24).Take(2).ToArray(),
+                        ModbusClient.RegisterOrder.HighLow));
+                    YAxis.ErrorId = Convert.ToUInt32(ModbusClient.ConvertRegistersToInt(templist.Skip(26).Take(2).ToArray(),
+                        ModbusClient.RegisterOrder.HighLow));
+                    ZAxis.ErrorId = Convert.ToUInt32(ModbusClient.ConvertRegistersToInt(templist.Skip(28).Take(2).ToArray(),
+                        ModbusClient.RegisterOrder.HighLow));
+                }
             }
             catch (Exception ex) {
 
@@ -197,17 +205,20 @@ namespace Template.DAL
         }
 
         private void ReadAnalyArea4() {
-            List<int> templist = client.ReadHoldingRegisters(0, 20).ToList();
-            XAxis.DestPostion= ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(0).Take<int>(4).ToArray<int>(),
-                   ModbusClient.RegisterOrder.HighLow);
-            YAxis.DestPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(4).Take<int>(4).ToArray<int>(),
-                   ModbusClient.RegisterOrder.HighLow);
-            ZAxis.DestPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(8).Take<int>(4).ToArray<int>(),
-                   ModbusClient.RegisterOrder.HighLow);
-            Distence = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(12).Take<int>(4).ToArray<int>(),
-                   ModbusClient.RegisterOrder.HighLow);
-            JogSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(16).Take<int>(4).ToArray<int>(),
-                   ModbusClient.RegisterOrder.HighLow);
+            lock (_async) {
+                List<int> templist = client.ReadHoldingRegisters(0, 20).ToList();
+                XAxis.DestPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(0).Take<int>(4).ToArray<int>(),
+                       ModbusClient.RegisterOrder.HighLow);
+                YAxis.DestPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(4).Take<int>(4).ToArray<int>(),
+                       ModbusClient.RegisterOrder.HighLow);
+                ZAxis.DestPostion = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(8).Take<int>(4).ToArray<int>(),
+                       ModbusClient.RegisterOrder.HighLow);
+                Distence = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(12).Take<int>(4).ToArray<int>(),
+                       ModbusClient.RegisterOrder.HighLow);
+                JogSpeed = ModbusClient.ConvertRegistersToDouble(templist.Skip<int>(16).Take<int>(4).ToArray<int>(),
+                       ModbusClient.RegisterOrder.HighLow);
+            }
+            
         }
 
         
@@ -234,123 +245,175 @@ namespace Template.DAL
         }
 
         public void JogForwardStart(int axisID) {
-            switch (axisID) {
-                case 1:client.WriteSingleCoil(0, true);
-                    break;
-                case 2:
-                    client.WriteSingleCoil(2, true);
-                    break;
-                case 3:
-                    client.WriteSingleCoil(4, true);
-                    break;
+            Task.Run(() => {
+                lock (_async) {
+                    switch (axisID) {
+                        case 1:
+                            client.WriteSingleCoil(0, true);
+                            break;
+                        case 2:
+                            client.WriteSingleCoil(2, true);
+                            break;
+                        case 3:
+                            client.WriteSingleCoil(4, true);
+                            break;
 
-                default:
-                    break;
-            }
+                        default:
+                            break;
+                    }
+                }
+                
+            });
+            
         }
         public void JogForwardEnd(int axisID) {
-            switch (axisID) {
-                case 1:
-                    client.WriteSingleCoil(0, false);
-                    break;
-                case 2:
-                    client.WriteSingleCoil(2, false);
-                    break;
-                case 3:
-                    client.WriteSingleCoil(4, false);
-                    break;
+            Task.Run(() => {
+                lock (_async) {
+                    switch (axisID) {
+                        case 1:
+                            client.WriteSingleCoil(0, false);
+                            break;
+                        case 2:
+                            client.WriteSingleCoil(2, false);
+                            break;
+                        case 3:
+                            client.WriteSingleCoil(4, false);
+                            break;
 
-                default:
-                    break;
-            }
+                        default:
+                            break;
+                    }
+                }
+                
+            });
+            
         }
         public void JogBackwardStart(int axisID) {
-            switch (axisID) {
-                case 1:
-                    client.WriteSingleCoil(1, true);
-                    break;
-                case 2:
-                    client.WriteSingleCoil(3, true);
-                    break;
-                case 3:
-                    client.WriteSingleCoil(5, true);
-                    break;
+            Task.Run(() => {
+                lock (_async) {
+                    switch (axisID) {
+                        case 1:
+                            client.WriteSingleCoil(1, true);
+                            break;
+                        case 2:
+                            client.WriteSingleCoil(3, true);
+                            break;
+                        case 3:
+                            client.WriteSingleCoil(5, true);
+                            break;
 
-                default:
-                    break;
-            }
+                        default:
+                            break;
+                    }
+                }
+                
+            });
+            
 
         }
         public void JogBackwardEnd(int axisID) {
-            switch (axisID) {
-                case 1:
-                    client.WriteSingleCoil(1, false);
-                    break;
-                case 2:
-                    client.WriteSingleCoil(3, false);
-                    break;
-                case 3:
-                    client.WriteSingleCoil(5, false);
-                    break;
+            Task.Run(() => {
+                lock (_async) {
+                    switch (axisID) {
+                        case 1:
+                            client.WriteSingleCoil(1, false);
+                            break;
+                        case 2:
+                            client.WriteSingleCoil(3, false);
+                            break;
+                        case 3:
+                            client.WriteSingleCoil(5, false);
+                            break;
 
-                default:
-                    break;
-            }
+                        default:
+                            break;
+                    }
+                }
+                
+            });
+            
         }
         /// <summary>
         /// 回原点
         /// </summary>
         public void Homeing(int axisID) {
-            switch (axisID) {
-                case 1:
-                    client.WriteSingleCoil(6, true);
-                    client.WriteSingleCoil(6, false);
-                    break;
-                case 2:
-                    client.WriteSingleCoil(7, true);
-                    client.WriteSingleCoil(7, false);
-                    break;
-                case 3:
-                    client.WriteSingleCoil(8, true);
-                    client.WriteSingleCoil(8, false);
-                    break;
+            Task.Run(() => {
+                lock (_async) {
+                    switch (axisID) {
+                        case 1:
+                            client.WriteSingleCoil(6, true);
+                            client.WriteSingleCoil(6, false);
+                            break;
+                        case 2:
+                            client.WriteSingleCoil(7, true);
+                            client.WriteSingleCoil(7, false);
+                            break;
+                        case 3:
+                            client.WriteSingleCoil(8, true);
+                            client.WriteSingleCoil(8, false);
+                            break;
 
-                default:
-                    break;
-            }
+                        default:
+                            break;
+                    }
+                }
+                
+            });
+            
         }
         /// <summary>绝对定位</summary>
         /// <param name="point">点位数据</param>
         /// <returns>定位成功</returns>
        public void PosAbsloute(AxisPoint point) {
-            List<int> ints = new List<int>();
-            ints.AddRange(ModbusClient.ConvertDoubleToRegisters(point.XAxisPostion, ModbusClient.RegisterOrder.HighLow));
-            ints.AddRange(ModbusClient.ConvertDoubleToRegisters(point.YAxisPostion, ModbusClient.RegisterOrder.HighLow));
-            ints.AddRange(ModbusClient.ConvertDoubleToRegisters(point.ZAxisPostion, ModbusClient.RegisterOrder.HighLow));
-            client.WriteMultipleRegisters(0, ints.ToArray());
-            client.WriteSingleCoil(11, true);
-            client.WriteSingleCoil(11, false);
+            Task.Run(() => {
+                lock (_async) {
+                    List<int> ints = new List<int>();
+                    ints.AddRange(ModbusClient.ConvertDoubleToRegisters(point.XAxisPostion, ModbusClient.RegisterOrder.HighLow));
+                    ints.AddRange(ModbusClient.ConvertDoubleToRegisters(point.YAxisPostion, ModbusClient.RegisterOrder.HighLow));
+                    ints.AddRange(ModbusClient.ConvertDoubleToRegisters(point.ZAxisPostion, ModbusClient.RegisterOrder.HighLow));
+                    client.WriteMultipleRegisters(0, ints.ToArray());
+                    client.WriteSingleCoil(11, true);
+                    client.WriteSingleCoil(11, false);
+                }
+                
+            });
+            
         }
         /// <summary>
         /// 复位轴
         /// </summary>
         public void ResetAxis() {
-            client.WriteSingleCoil(9, true);
-            client.WriteSingleCoil(9, false);
+            Task.Run(() => {
+                lock (_async) {
+                    client.WriteSingleCoil(9, true);
+                    client.WriteSingleCoil(9, false);
+                }
+                
+            });
         }
         /// <summary>
         /// 停止轴
         /// </summary>
         public void StopAxis() {
-            client.WriteSingleCoil(10, true);
-            client.WriteSingleCoil(10, false);
+            Task.Run(() => {
+                lock (_async) {
+                    client.WriteSingleCoil(10, true);
+                    client.WriteSingleCoil(10, false);
+                }
+               
+            });
         }
-
         public void ModifyParam(double Dist,double JogSpeed) {
-            List<int> ints = new List<int>();
-            ints.AddRange(ModbusClient.ConvertDoubleToRegisters(Dist, ModbusClient.RegisterOrder.HighLow));
-            ints.AddRange(ModbusClient.ConvertDoubleToRegisters(JogSpeed, ModbusClient.RegisterOrder.HighLow));
-            client.WriteMultipleRegisters(12, ints.ToArray());
+            Task.Run(() => {
+                lock (_async) {
+                    List<int> ints = new List<int>();
+                    ints.AddRange(ModbusClient.ConvertDoubleToRegisters(Dist, ModbusClient.RegisterOrder.HighLow));
+                    ints.AddRange(ModbusClient.ConvertDoubleToRegisters(JogSpeed, ModbusClient.RegisterOrder.HighLow));
+                    client.WriteMultipleRegisters(12, ints.ToArray());
+                }
+                
+            });
+            
         }
     }
 
